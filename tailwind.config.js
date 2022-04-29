@@ -4,6 +4,19 @@ module.exports = {
     extend: {
       maxWidth: {
         'main': '975px',
+      },
+      colors: {
+        'white': '#ffffff',
+        'app-gray-100': '#fafafa',
+        'app-gray-300': '#dddddd',
+        'app-gray-400': '#a8a8a8',
+        'app-gray-500': '#8e8e8e',
+        'skyblue': '#8bbae7',
+        'cornflowerblue': '#53a1e5',
+        'paleturquiose': '#c0dffd'
+      },
+      screens: {
+        'x-sm': '450px',
       }
     },
   },

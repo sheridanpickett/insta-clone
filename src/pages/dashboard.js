@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Header from '../components/header';
 
 export default function Dashboard() {
-
     const [imageFile, setImageFile] = useState(null);
 
     const handleFileSelect = e => {
@@ -16,7 +15,7 @@ export default function Dashboard() {
         formData.append('imageFile', imageFile);
         try {
             const res = await axios.post(
-                'http://localhost:4000/images',
+                `${process.env.REACT_APP_API_SERVER_URL}/images`,
                 formData,
                 { headers: {'content-type': 'multipart/form-data'}}
             )
@@ -32,7 +31,7 @@ export default function Dashboard() {
             <div className="flex flex-col items-center pt-20">
                 <h1>Upload a photo:</h1>
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleFileSelect} type="file" name="fileupload" accept="image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime" />
+                    <input onChange={handleFileSelect} type="file" accept="image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime" />
                     <button type="submit">Submit</button>
                 </form>
             </div>
