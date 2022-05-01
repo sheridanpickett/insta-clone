@@ -1,4 +1,4 @@
-export default function FormButton({type, disabled, children, ...props}) {
+export default function Button({type, disabled, children, ...props}) {
     return (
         <button 
             disabled={disabled}

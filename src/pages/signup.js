@@ -1,8 +1,8 @@
 import { useState } from 'react'; 
 import { Link } from 'react-router-dom';
 import { SIGNUP } from '../constants/routes';
-import FormInput from '../components/formInput';
-import FormButton from '../components/formButton';
+import Input from '../components/input';
+import Button from '../components/button';
 import Logo from '../images/logo.png';
 
 export default function Signup() {
@@ -18,11 +18,11 @@ export default function Signup() {
                 <img className="w-[175px] pb-2.5" src={Logo} alt="Instagram logo" />
                 <p className="font-semibold text-[17px] text-app-gray-500 text-center pb-7">Sign up to see photos and videos from your friends.</p>
                 <form className="flex flex-col w-full">
-                    <FormInput value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email Address" name="email" type="email" />
-                    <FormInput value={fullName} onChange={e=>setFullName(e.target.value)} placeholder="Full Name" name="name" />
-                    <FormInput value={username} onChange={e=>setUsername(e.target.value)} placeholder="Username" name="username" />
-                    <FormInput value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="new-password" type="password" />
-                    <FormButton type="submit" disabled={false}>Next</FormButton>
+                    <Input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email Address" name="email" type="email" />
+                    <Input value={fullName} onChange={e=>setFullName(e.target.value)} placeholder="Full Name" name="name" />
+                    <Input value={username} onChange={e=>setUsername(e.target.value)} placeholder="Username" name="username" />
+                    <Input value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="new-password" type="password" />
+                    <Button type="submit" disabled={false}>Next</Button>
                 </form>
                 <p className="text-[12px] text-center leading-[16px] mt-4 text-app-gray-500">
                     By signing up, you agree to our <span className="font-semibold">Terms</span>. 
