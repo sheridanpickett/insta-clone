@@ -13,7 +13,8 @@ module.exports = {
         'app-gray-500': '#8e8e8e',
         'skyblue': '#8bbae7',
         'cornflowerblue': '#53a1e5',
-        'paleturquiose': '#c0dffd'
+        'paleturquiose': '#c0dffd',
+        'facebookblue': '#00376B'
       },
       screens: {
         'x-sm': '450px',
