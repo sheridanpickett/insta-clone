@@ -1,6 +1,6 @@
 import { useState } from 'react'; 
 import { Link } from 'react-router-dom';
-import { LOGIN } from '../constants/routes';
+import { SIGNUP } from '../constants/routes';
 import FormInput from '../components/formInput';
 import FormButton from '../components/formButton';
 import Logo from '../images/logo.png';
@@ -18,10 +18,10 @@ export default function Signup() {
                 <img className="w-[175px] pb-2.5" src={Logo} alt="Instagram logo" />
                 <p className="font-semibold text-[17px] text-app-gray-500 text-center pb-7">Sign up to see photos and videos from your friends.</p>
                 <form className="flex flex-col w-full">
-                    <FormInput onChange={e=>setEmail(e.target.value)} value={email} placeholder="Email Address" />
-                    <FormInput onChange={e=>setFullName(e.target.value)} value={fullName} placeholder="Full Name" />
-                    <FormInput onChange={e=>setUsername(e.target.value)} value={username} placeholder="Username" />
-                    <FormInput onChange={e=>setPassword(e.target.value)} value={password} placeholder="Password" />
+                    <FormInput value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email Address" name="email" type="email" />
+                    <FormInput value={fullName} onChange={e=>setFullName(e.target.value)} placeholder="Full Name" name="name" />
+                    <FormInput value={username} onChange={e=>setUsername(e.target.value)} placeholder="Username" name="username" />
+                    <FormInput value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="new-password" type="password" />
                     <FormButton type="submit" disabled={false}>Next</FormButton>
                 </form>
                 <p className="text-[12px] text-center leading-[16px] mt-4 text-app-gray-500">
@@ -32,7 +32,7 @@ export default function Signup() {
             </div>
             <div className="w-[350px] p-2.5 border-app-gray-300 x-sm:border x-sm:bg-white">
                 <p className="flex items-center justify-center m-3.5 text-[14px]">
-                    Have an account?&nbsp; <Link to={LOGIN}><span className="text-cornflowerblue">Log in</span></Link>
+                    Have an account?&nbsp; <Link to={SIGNUP}><span className="text-cornflowerblue">Log in</span></Link>
                 </p>
             </div>
         </div>
