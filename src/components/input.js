@@ -1,7 +1,24 @@
+import styled from 'styled-components'
+
+const StyledInput = styled.input`
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    line-height: 6px;
+    color: #8e8e8e;
+    background-color: #fafafa;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    text-align: baseline;
+    &::placeholder {
+        color: blue;
+    }
+`
+
 export default function Input({value, onChange, ...props}) {
     return (
-        <input 
-            className="w-full p-2.5 mb-1.5 text-xs text-app-gray-500 bg-app-gray-100 border border-app-gray-300 rounded-[3px]" 
+        <StyledInput 
             value={value} 
             onChange={onChange} 
             {...props}
