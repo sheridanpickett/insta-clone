@@ -27,7 +27,7 @@ export default function Login() {
                             <Button>Log in</Button>
                         </form>
                         <Link to={PASSWORD_RESET}>
-                            <p className="text-xs text-facebookblue mt-6">Forgotten you password?</p>
+                            <p className="text-xs text-facebookblue mt-6">Forgotten your password?</p>
                         </Link>
                     </div>
                     <div className="w-[350px] p-2.5 border-app-gray-300 x-sm:border x-sm:bg-white">
