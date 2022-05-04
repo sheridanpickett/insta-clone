@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <div className="grow flex flex-col items-center mb-12 mt-6">
+        <div className="grow flex flex-col items-center mb-8 mt-6">
             <div className="flex flex-wrap justify-center">
                 <div className="text-xs text-app-gray-500 mx-2 mb-3 w-max">Meta</div>
                 <div className="text-xs text-app-gray-500 mx-2 mb-3 w-max">About</div>

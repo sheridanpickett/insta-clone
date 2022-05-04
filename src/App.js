@@ -3,6 +3,7 @@ import * as ROUTES from './constants/routes';
 import Dashboard from './pages/dashboard';
 import Signup from './pages/signup';
 import Login from './pages/login';
+import PasswordReset from './pages/passwordReset';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.SIGNUP} element={<Signup />} />
+        <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
         <Route path={ROUTES.DASHBOARD} element={<Dashboard/>} />
       </Routes>
     </BrowserRouter>

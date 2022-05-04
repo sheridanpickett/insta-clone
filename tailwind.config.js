@@ -11,6 +11,7 @@ module.exports = {
         'app-gray-300': '#dddddd',
         'app-gray-400': '#a8a8a8',
         'app-gray-500': '#8e8e8e',
+        'app-gray-700': '#262626',
         'skyblue': '#8bbae7',
         'cornflowerblue': '#53a1e5',
         'paleturquiose': '#c0dffd',

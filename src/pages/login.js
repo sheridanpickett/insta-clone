@@ -22,7 +22,7 @@ export default function Login() {
                     <div className="w-[350px] flex flex-col items-center border-app-gray-300 px-10 pt-11 pb-6 mb-2.5 x-sm:border x-sm:bg-white">
                         <img className="w-[175px] pb-9" src={Logo} alt="Instagram logo" />
                         <form className="flex flex-col w-full">
-                            <Input value={login} onChange={e=>setLogin(e.target.value)} placeholder="Email Address or Username" name="username"/>
+                            <Input value={login} onChange={e=>setLogin(e.target.value)} placeholder="Email Address or Username" name="email"/>
                             <Input value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="password" type="password"/>
                             <Button>Log in</Button>
                         </form>

@@ -1,5 +1,5 @@
 import { axios } from 'axios'
-import Logo from '../images/logo.png';
+import Logo from '../images/header-logo.png';
 
 export default function Header() {
 
@@ -13,7 +13,7 @@ export default function Header() {
     }
 
     return(
-        <header className="border-b border-gray-100 h-16 flex justify-center">
+        <header className="border-b border-app-gray-300 bg-white h-[60px] flex justify-center">
             <div className="max-w-main w-full px-5 flex justify-between items-center">
                 <div className="h-9 flex items-end">
                     <img className="w-24" src={Logo} />
