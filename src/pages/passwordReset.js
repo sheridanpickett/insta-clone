@@ -31,7 +31,7 @@ export default function PasswordReset() {
                     <p className="mb-[12px] text-app-gray-500 text-center text-[14px] leading-[18px]">
                         Enter your email address or username and we'll send you a link to get back in to your account.
                     </p>
-                    <Input value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
+                    <Input variant="$secondary" value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
                     <Button>Send login link</Button>
                     <div className="mt-[32px] mb-[16px]">
                         <div className="text-app-gray-500 text-[13px] leading-[16px] font-semibold">OR</div>

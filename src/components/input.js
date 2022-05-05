@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components';
 
 const Container = styled.div`
     width: 100%;
     position: relative;
-    border: 1px solid ${props => props.focus ? '#a8a8a8' : '#d8d8d8'};
-    border-radius: 3px;
     margin-bottom: 6px;
     display: flex;
     background-color: #fafafa;
+    border-radius: 3px;
+    border: 1px solid ${props => props.focus ? '#a8a8a8' : '#d8d8d8'};
+    ${({variant})=> variant==='$secondary' && 'border-radius: 6px'};
 `
 
 const Placeholder = styled.span`
@@ -23,20 +24,21 @@ const Placeholder = styled.span`
     transform-origin: top left;
     transition: transform 0.1s ease-out;
     ${props=>props.active && 'transform: matrix(0.83333, 0, 0, 0.83333, 0, -6.3333)'}
-
+    ${({variant})=>variant==='$secondary' && css`
+        font-size: 14px;
+        color: #c7c7c7;
+        ${props=>props.active && 'transform: matrix(0.8, 0, 0, 0.8, 0, -6)'}
+    `}
 `
 
 const StyledInput = styled.input`
     width: 100%;
-    font-size: ${props=>props.active ? '12px' : '18px'};
     line-height: 20px;
     cursor: text;
-    padding: ${ props=>props.active ?
-        '14px 8px 2px 8px':
-        '9px 8px 7px 8px'
-    };
     outline: none;
     background-color: inherit;
+    font-size: ${props=>props.active ? '12px' : '18px'};
+    padding: ${ props=>props.active ? '14px 8px 2px 8px':'9px 8px 7px 8px'};
 `
 
 const ShowPasswordButton = styled.button`
@@ -55,7 +57,7 @@ const Label = styled.label`
     flex-grow: 1;
 `
 
-export default function Input({value, onChange, placeholder, type, ...props}) {
+export default function Input({value, onChange, placeholder, type, variant, ...props}) {
     const [focus, setFocus] = useState(false);
     const [showPassword, setShowPassword] = useState(false); 
 
@@ -65,10 +67,11 @@ export default function Input({value, onChange, placeholder, type, ...props}) {
     }
 
     return (
-        <Container focus={focus}>
+        <Container variant={variant} focus={focus}>
             <Label>
-                <Placeholder active={value!==''}>{placeholder}</Placeholder>
+                <Placeholder variant={variant} active={value!==''}>{placeholder}</Placeholder>
                 <StyledInput
+                    variant={variant}
                     active={value!==''}
                     value={value} 
                     type={(showPassword === false && type === 'password') ? 'password' : 'text'}
