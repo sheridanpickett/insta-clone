@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import Header from '../components/header';
+import Navigation from '../components/navigation';
 
 export default function Dashboard() {
     const [imageFile, setImageFile] = useState(null);
@@ -27,7 +27,7 @@ export default function Dashboard() {
     
     return (
         <>
-            <Header />
+            <Navigation />
             <div className="flex flex-col items-center pt-20">
                 <h1>Upload a photo:</h1>
                 <form onSubmit={handleSubmit}>

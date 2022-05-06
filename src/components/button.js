@@ -1,12 +1,53 @@
-export default function Button({type, disabled, children, ...props}) {
+import styled, {css} from 'styled-components';
+
+const ButtonContainer = styled.button`
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+    padding: 5px 9px;
+    ${({variant}) => {
+        switch(variant) {
+            case '$form':
+                return css`
+                    width: 100%;
+                    background-color: #53a1e5;
+                    border: none;
+                    :disabled {
+                        background-color: #c0dffd;
+                    }
+                `
+            break;
+        }
+    }}
+`
+
+const Inner = styled.div`
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: #262626;
+    ${({variant}) => {
+        switch(variant) {
+            case '$form':
+                return css`
+                    color: white;
+                `
+            break;
+        }
+    }}
+`
+
+
+export default function Button({variant, children, ...props}) {
     return (
-        <button 
-            disabled={disabled}
-            className="w-full mt-2 text-white text-sm font-semibold rounded p-[5px] bg-cornflowerblue disabled:bg-paleturquiose" 
-            type={type||null}
+        <ButtonContainer
+            variant={variant}
             {...props}
         >
-            {children}
-        </button>
+            <Inner variant={variant}>
+                {children}
+            </Inner>
+        </ButtonContainer>
     )
 }

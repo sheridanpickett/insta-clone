@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { SIGNUP, LOGIN } from '../constants/routes';
-import Header from '../components/header';
+import Navigation from '../components/navigation';
 import Footer from '../components/footer';
 import Input from '../components/input';
 import Button from '../components/button';
@@ -21,7 +21,7 @@ export default function PasswordReset() {
     const [value, setValue] = useState('');
     return (
         <div>
-            <Header />
+            <Navigation />
             <div className="flex flex-col items-center w-[388px] h-[522px] mt-[50px] mb-[38px] mx-auto border border-app-gray-300 bg-white rounded">
                 <div className="flex flex-col items-center px-[44px]">
                     <div className="mt-[24px] mb-[16px]">
@@ -31,11 +31,15 @@ export default function PasswordReset() {
                     <p className="mb-[12px] text-app-gray-500 text-center text-[14px] leading-[18px]">
                         Enter your email address or username and we'll send you a link to get back in to your account.
                     </p>
-                    <Input variant="$secondary" value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
-                    <Button>Send login link</Button>
-                    <div className="mt-[32px] mb-[16px]">
-                        <div className="text-app-gray-500 text-[13px] leading-[16px] font-semibold">OR</div>
-                        
+                    <div className="w-full mb-[16px]">
+                        <Input variant="$secondary" value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
+
+                    </div>
+                    <Button variant="$form">Send login link</Button>
+                    <div className="mt-[32px] mb-[16px] flex items-center w-full">
+                        <div className="w-full bg-app-gray-300 h-[1px]" />
+                        <div className="text-app-gray-500 text-[13px] mx-[18px] leading-[16px] font-semibold">OR</div>
+                        <div className="w-full bg-app-gray-300 h-[1px]" />
                     </div>
                     <p>
                         <Link to={SIGNUP}>
@@ -51,7 +55,7 @@ export default function PasswordReset() {
                     </p>
                 </div>
             </div>
-            <div className="p-1"></div>
+            <div className="p-1" />
             <Footer />
         </div>
     )

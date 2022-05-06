@@ -4,7 +4,6 @@ import styled, {css} from 'styled-components';
 const Container = styled.div`
     width: 100%;
     position: relative;
-    margin-bottom: 6px;
     display: flex;
     background-color: #fafafa;
     border-radius: 3px;
@@ -38,7 +37,7 @@ const StyledInput = styled.input`
     outline: none;
     background-color: inherit;
     font-size: ${props=>props.active ? '12px' : '18px'};
-    padding: ${ props=>props.active ? '14px 8px 2px 8px':'9px 8px 7px 8px'};
+    padding: ${ props=>props.active ? '14px 8px 2px 8px' : '9px 8px 7px 8px'};
 `
 
 const ShowPasswordButton = styled.button`

@@ -4,6 +4,7 @@ import Dashboard from './pages/dashboard';
 import Signup from './pages/signup';
 import Login from './pages/login';
 import PasswordReset from './pages/passwordReset';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.SIGNUP} element={<Signup />} />
         <Route path={ROUTES.PASSWORD_RESET} element={<PasswordReset />} />
-        <Route path={ROUTES.DASHBOARD} element={<Dashboard/>} />
+        <Route path={ROUTES.PROFILE} element={<Profile />} />
+        <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
