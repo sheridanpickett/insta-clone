@@ -18,6 +18,7 @@ const KeyIcon = styled.span`
 `
 
 export default function PasswordReset() {
+    console.log(Sprites)
     const [value, setValue] = useState('');
     return (
         <div>

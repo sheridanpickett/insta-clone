@@ -9,19 +9,19 @@ export default function Tablist() {
             <Link to='/' className="h-[52px] mr-[60px] flex items-center">
                 <span className="flex items-center text-app-gray-700">
                     <PostsIcon />
-                    Posts
+                    <span className="ml-[6px] tracking-[1px] text-[12px] leading-[18px] font-semibold">POSTS</span>
                 </span>
             </Link>
             <Link to='/' className="h-[52px] mr-[60px] flex items-center">
                 <span className="flex items-center text-app-gray-500">
                     <SavedIcon />
-                    Saved
+                    <span className="ml-[6px] tracking-[1px] text-[12px] leading-[18px] font-semibold">SAVED</span>
                 </span>
             </Link>
             <Link to='/' className="h-[52px] flex items-center">
                 <span className="flex items-center text-app-gray-500">
                     <TaggedIcon />
-                    Tagged
+                    <span className="ml-[6px] tracking-[1px] text-[12px] leading-[18px] font-semibold">TAGGED</span>
                 </span>
             </Link>
         </div>

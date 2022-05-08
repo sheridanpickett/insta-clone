@@ -4,6 +4,7 @@ import Tablist from '../components/tablist';
 import Button from '../components/button';
 import Avatar from '../images/avatar.jpeg';
 import Upsell from '../images/media-upsell.jpeg';
+import {ReactComponent as OptionsIcon} from '../images/options.svg';
 
 export default function Profile() {
     return (
@@ -12,16 +13,16 @@ export default function Profile() {
             <main className="max-w-[975px] mx-auto pt-[30px] px-[20px] mb-[54px]">
                 <header className="flex mb-[44px]">
                     <div className="flex justify-center grow-[1]">
-                        <button>
+                        <button >
                             <img className="h-[150px] w-[150px] rounded-[50%]" src={Avatar} alt="add a profile picture" />
                         </button>
                     </div>
                     <section className="grow-[2]">
-                        <div className="flex items-end mb-[20px]">
+                        <div className="flex items-center mb-[20px]">
                             <h2 className="text-app-gray-3700 text-[28px] leading-[32px] font-light mr-[20px]">joelmee94</h2>
                             <Button>Edit profile</Button>
-                            <button>
-                                <img alt="" />
+                            <button className="p-[8px] ml-[5px]">
+                                <OptionsIcon />
                             </button>
                         </div>
                         <ul className="flex mb-[20px] text-[16px] leading-[24px]">

@@ -13,8 +13,8 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     return(
-        <div className="h-screen flex flex-col">
-            <div className="flex justify-center h-[632px] mt-9 mx-7 pb-8">
+        <div className="min-h-screen flex flex-col">
+            <div className="flex justify-center min-h-[632px] mt-9 mx-7 pb-8">
                 <div className="hidden m-lg:inline-block">
                     <HomeIphoneImage />
                 </div>

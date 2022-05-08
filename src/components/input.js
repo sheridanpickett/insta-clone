@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled, {css} from 'styled-components';
+import Sprites from '../images/sprites.png';
 
 const Container = styled.div`
     width: 100%;
@@ -65,14 +66,15 @@ export default function Input({value, onChange, placeholder, type, variant, ...p
         setShowPassword(!showPassword);
     }
 
+
     return (
-        <Container variant={variant} focus={focus}>
+        <Container className="flex items-center" variant={variant} focus={focus}>
             <Label>
                 <Placeholder variant={variant} active={value!==''}>{placeholder}</Placeholder>
                 <StyledInput
                     variant={variant}
                     active={value!==''}
-                    value={value} 
+                    value={value}
                     type={(showPassword === false && type === 'password') ? 'password' : 'text'}
                     onChange={onChange}
                     onFocus={()=>setFocus(true)}
@@ -80,12 +82,11 @@ export default function Input({value, onChange, placeholder, type, variant, ...p
                     {...props}
                 />
             </Label>
+            <div className={`h-[22px] w-[22px]`} />
             {
                 (type === 'password' && value !== '') &&
                 <ButtonContainer>
-                    <ShowPasswordButton
-                        onClick={toggleShowPassword}
-                    >
+                    <ShowPasswordButton onClick={toggleShowPassword}>
                         {showPassword ? 'Hide' : 'Show'}
                     </ShowPasswordButton>
                 </ButtonContainer>
