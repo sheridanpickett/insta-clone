@@ -14,7 +14,7 @@ export default function Profile() {
                 <header className="flex mb-[44px]">
                     <div className="flex justify-center grow-[1]">
                         <button >
-                            <img className="h-[150px] w-[150px] rounded-[50%]" src={Avatar} alt="add a profile picture" />
+                            <img className="h-[150px] w-[150px] rounded-[50%]" src={Avatar} alt="add a profile pic" />
                         </button>
                     </div>
                     <section className="grow-[2]">

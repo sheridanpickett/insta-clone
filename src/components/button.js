@@ -16,7 +16,8 @@ const ButtonContainer = styled.button`
                         background-color: #c0dffd;
                     }
                 `
-            break;
+            default:
+                break;
         }
     }}
 `
@@ -33,7 +34,8 @@ const Inner = styled.div`
                 return css`
                     color: white;
                 `
-            break;
+            default:
+                break;
         }
     }}
 `

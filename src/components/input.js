@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled, {css} from 'styled-components';
-import Sprites from '../images/sprites.png';
+import SpriteSheet from '../images/sprites.png';
 
 const Container = styled.div`
     width: 100%;
@@ -57,6 +57,10 @@ const Label = styled.label`
     flex-grow: 1;
 `
 
+const Icon = styled.div`
+    background-images: url(${SpriteSheet});
+`
+
 export default function Input({value, onChange, placeholder, type, variant, ...props}) {
     const [focus, setFocus] = useState(false);
     const [showPassword, setShowPassword] = useState(false); 
@@ -82,7 +86,7 @@ export default function Input({value, onChange, placeholder, type, variant, ...p
                     {...props}
                 />
             </Label>
-            <div className={`h-[22px] w-[22px]`} />
+            <Icon />
             {
                 (type === 'password' && value !== '') &&
                 <ButtonContainer>

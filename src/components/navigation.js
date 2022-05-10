@@ -1,14 +1,12 @@
-import { axios } from 'axios'
 import Logo from '../images/header-logo.png';
 
 export default function Navigation() {
-
 
     return(
         <nav className="border-b border-app-gray-300 bg-white h-[60px] flex justify-center">
             <div className="max-w-main w-full px-5 flex justify-between items-center">
                 <div className="h-9 flex items-end">
-                    <img className="w-24" src={Logo} />
+                    <img className="w-24" src={Logo} alt="instagram logo" />
                 </div>
                 <button>
                     <svg aria-label="New post" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24">
