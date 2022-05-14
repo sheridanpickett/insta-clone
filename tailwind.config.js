@@ -15,7 +15,8 @@ module.exports = {
         'skyblue': '#8bbae7',
         'cornflowerblue': '#53a1e5',
         'paleturquiose': '#c0dffd',
-        'facebookblue': '#00376B'
+        'facebookblue': '#00376B',
+        'red-error': '#ed4956'
       },
       screens: {
         'x-sm': '450px',

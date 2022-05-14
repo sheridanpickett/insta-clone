@@ -20,6 +20,7 @@ const Placeholder = styled.span`
     font-size: 12px;
     line-height: 36px;
     vertical-align: baseline;
+    pointer-events: none;
     cursor: text;
     transform-origin: top left;
     transition: transform 0.1s ease-out;
@@ -36,7 +37,10 @@ const StyledInput = styled.input`
     line-height: 20px;
     cursor: text;
     outline: none;
-    background-color: inherit;
+    background-color: #fafafa;
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px #fafafa inset;
+    }
     font-size: ${props=>props.active ? '12px' : '18px'};
     padding: ${ props=>props.active ? '14px 8px 2px 8px' : '9px 8px 7px 8px'};
 `
@@ -57,11 +61,25 @@ const Label = styled.label`
     flex-grow: 1;
 `
 
-const Icon = styled.div`
-    background-images: url(${SpriteSheet});
+const NotValidIcon = styled.div`
+    height: 22px;
+    width: 22px;
+    margin-right: 8px;
+    background-image: url(${SpriteSheet});
+    background-size: 440px 411px;
+    background-position: -402px -353px;
 `
 
-export default function Input({value, onChange, placeholder, type, variant, ...props}) {
+const ValidIcon = styled.div`
+    height: 22px;
+    width: 22px;
+    margin-right: 8px;
+    background-image: url(${SpriteSheet});
+    background-size: 440px 411px;
+    background-position: -402px -330px;
+`
+
+export default function Input({value, accepted, hasError, onChange, placeholder, type, variant, onFocus, onBlur, ...props}) {
     const [focus, setFocus] = useState(false);
     const [showPassword, setShowPassword] = useState(false); 
 
@@ -81,12 +99,23 @@ export default function Input({value, onChange, placeholder, type, variant, ...p
                     value={value}
                     type={(showPassword === false && type === 'password') ? 'password' : 'text'}
                     onChange={onChange}
-                    onFocus={()=>setFocus(true)}
-                    onBlur={()=>setFocus(false)}
+                    onFocus={e=>{
+                        setFocus(true);
+                        onFocus(e);
+                    }}
+                    onBlur={e=>{
+                        setFocus(false);
+                        onBlur(e);
+                    }}
                     {...props}
                 />
             </Label>
-            <Icon />
+            {
+                accepted && <ValidIcon />
+            }
+            {
+                (hasError && !focus) && <NotValidIcon />
+            }
             {
                 (type === 'password' && value !== '') &&
                 <ButtonContainer>
