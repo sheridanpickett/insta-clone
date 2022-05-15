@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { SIGNUP, LOGIN } from '../constants/routes';
 import Navigation from '../components/navigation';
 import Footer from '../components/footer';
-import Input from '../components/input';
+import FormInput from '../components/formInput';
 import Button from '../components/button';
 import Sprites from '../images/sprites.png';
 
@@ -33,7 +33,7 @@ export default function PasswordReset() {
                         Enter your email address or username and we'll send you a link to get back in to your account.
                     </p>
                     <div className="w-full mb-[16px]">
-                        <Input variant="$secondary" value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
+                        <FormInput variant="$secondary" value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
 
                     </div>
                     <Button variant="$form">Send login link</Button>

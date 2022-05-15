@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SIGNUP, PASSWORD_RESET } from '../constants/routes';
-import Input from '../components/input';
+import FormInput from '../components/formInput';
 import Button from '../components/button';
 import HomeIphoneImage from '../components/homeIphoneImage';
 import Footer from '../components/footer';
@@ -23,10 +23,10 @@ export default function Login() {
                         <img className="w-[175px] pb-9" src={Logo} alt="Instagram logo" />
                         <form className="flex flex-col w-full">
                             <div className="w-full mb-[6px]">
-                                <Input value={login} onChange={e=>setLogin(e.target.value)} placeholder="Email Address or Username" name="email"/>
+                                <FormInput value={login} onChange={e=>setLogin(e.target.value)} placeholder="Email Address or Username" name="email"/>
                             </div>
                             <div className="w-full mb-[14px]">
-                                <Input value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="password" type="password"/>
+                                <FormInput value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="password" type="password"/>
                             </div>
                             <Button variant="$form">Log in</Button>
                         </form>

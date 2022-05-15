@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../constants/routes';
-import Input from '../components/input';
+import FormInput from '../components/formInput';
 import Button from '../components/button';
 import Logo from '../images/logo.png';
 
@@ -107,7 +107,7 @@ export default function Signup() {
                 <p className="font-semibold text-[17px] text-app-gray-500 text-center pb-7">Sign up to see photos and videos from your friends.</p>
                 <form className="flex flex-col w-full items-center" onSubmit={handleSubmit}>
                     <div className="w-full mb-[6px]">
-                        <Input
+                        <FormInput
                             value={email} 
                             accepted={signupResult.email.accepted} 
                             hasError={signupResult.email.hasError} 
@@ -119,7 +119,7 @@ export default function Signup() {
                             type="email" />
                     </div>
                     <div className="w-full mb-[6px]">
-                        <Input
+                        <FormInput
                             value={fullName} 
                             accepted={signupResult.fullName.accepted} 
                             hasError={signupResult.fullName.hasError} 
@@ -130,7 +130,7 @@ export default function Signup() {
                             name="fullName" />
                     </div>
                     <div className="w-full mb-[6px]">
-                        <Input
+                        <FormInput
                             value={username} 
                             accepted={signupResult.username.accepted} 
                             hasError={signupResult.username.hasError} 
@@ -141,7 +141,7 @@ export default function Signup() {
                             name="username" />
                     </div>
                     <div className="w-full mb-[14px]">
-                        <Input
+                        <FormInput
                             value={password} 
                             accepted={signupResult.password.accepted} 
                             hasError={signupResult.password.hasError} 

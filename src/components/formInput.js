@@ -79,7 +79,7 @@ const ValidIcon = styled.div`
     background-position: -402px -330px;
 `
 
-export default function Input({value, accepted, hasError, onChange, placeholder, type, variant, onFocus, onBlur, ...props}) {
+export default function FormInput({value, accepted, hasError, onChange, placeholder, type, variant, onFocus, onBlur, ...props}) {
     const [focus, setFocus] = useState(false);
     const [showPassword, setShowPassword] = useState(false); 
 
