@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import Navigation from '../components/navigation';
+import DashboardPostFeed from '../components/dashboardPostFeed';
 
 export default function Dashboard() {
     const [imageFile, setImageFile] = useState(null);
@@ -28,12 +29,13 @@ export default function Dashboard() {
     return (
         <>
             <Navigation />
-            <div className="flex flex-col items-center pt-20">
-                <h1>Upload a photo:</h1>
+            <div className="flex justify-center">
+                {/* <h1>Upload a photo:</h1>
                 <form onSubmit={handleSubmit}>
                     <input onChange={handleFileSelect} type="file" accept="image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime" />
                     <button type="submit">Submit</button>
-                </form>
+                </form> */}
+                <DashboardPostFeed />
             </div>
         </>
     )
