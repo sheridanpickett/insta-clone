@@ -41,6 +41,9 @@ const StyledInput = styled.input`
     &:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px #fafafa inset;
     }
+    &: autofill {
+        box-shadow: 0 0 0px 1000px #fafafa inset;
+    }
     font-size: ${props=>props.active ? '12px' : '18px'};
     padding: ${ props=>props.active ? '14px 8px 2px 8px' : '9px 8px 7px 8px'};
 `
