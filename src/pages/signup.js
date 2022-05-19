@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { LOGIN } from '../constants/routes';
+import { Link, useNavigate } from 'react-router-dom';
+import { LOGIN, DASHBOARD } from '../constants/routes';
 import FormInput from '../components/formInput';
 import Button from '../components/button';
 import Logo from '../images/logo.png';
 
 export default function Signup() {
 
+    const navigate = useNavigate();
     const [focusedFields, setFocusedFields] = useState({
         current: null,
         previous: []
@@ -46,6 +47,9 @@ export default function Signup() {
         e.preventDefault();
         setShowMessage(false);
         const res = await getSignUpResults(false);
+        if(res.errors.length < 1) {
+            navigate(DASHBOARD);
+        }
     }
 
     const addToFocusedFields = ({target}) => {
@@ -61,7 +65,7 @@ export default function Signup() {
     }
 
     const getSignUpResults = async (wasDryRun) => {
-        const res = await axios.post(`${process.env.REACT_APP_API_SERVER_URL}/accounts/create_user`,{wasDryRun,email,fullName,username,password});
+        const res = await axios.post(`${process.env.REACT_APP_API_SERVER_URL}/accounts/create_user`,{wasDryRun,email,fullName,username,password}, {withCredentials: true});
         const errorFields = res.data.errors.map(field=>field.label);
         const setFieldValues = fieldName => {
             let field = {};
@@ -173,6 +177,10 @@ export default function Signup() {
                     Have an account?&nbsp; <Link to={LOGIN}><span className="text-cornflowerblue font-semibold">Log in</span></Link>
                 </p>
             </div>
+            <button onClick={async () => {
+                const res = await axios.get(`${process.env.REACT_APP_API_SERVER_URL}/accounts/welcome`, {withCredentials: true});
+                console.log(res);
+            }}>Check</button>
         </div>
     )
 }

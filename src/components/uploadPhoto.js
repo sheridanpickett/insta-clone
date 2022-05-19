@@ -6,8 +6,20 @@ const UploadPhoto = () => {
     const [imageFile, setImageFile] = useState(null);
     const inputRef = useRef(null);
 
-    const handleFileSelect = e => {
+    const handleFileSelect = async e => {
         setImageFile(e.target.files[0]);
+        const formData = new FormData();
+        formData.append('imageFile', e.target.files[0]);
+        try {
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_SERVER_URL}/images`,
+                formData,
+                { headers: {'content-type': 'multipart/form-data'}}
+            )
+            console.log(res);
+        } catch(err) {
+            console.log(err);
+        }
     }
 
     const handleClick = () => {
