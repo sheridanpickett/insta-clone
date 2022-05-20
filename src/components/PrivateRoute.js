@@ -5,7 +5,7 @@ import { LOGIN } from '../constants/routes';
 const PrivateRoute = ({children}) => {
     const location = useLocation();
     const auth = useAuth();
-    if(!auth || !auth.user) {
+    if(!auth || !auth.currentUser) {
         return <Navigate to={LOGIN} state={{from: location}} replace />
     } else {
         return children;

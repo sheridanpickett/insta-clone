@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useAuth from '../context/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN, DASHBOARD } from '../constants/routes';
 import FormInput from '../components/formInput';
@@ -8,6 +9,7 @@ import Logo from '../images/logo.png';
 
 export default function Signup() {
 
+    const auth = useAuth();
     const navigate = useNavigate();
     const [focusedFields, setFocusedFields] = useState({
         current: null,
@@ -47,8 +49,8 @@ export default function Signup() {
         e.preventDefault();
         setShowMessage(false);
         const res = await getSignUpResults(false);
-        if(res.errors.length < 1) {
-            navigate(DASHBOARD);
+        if(true) {
+            await auth.signup(email, password);
         }
     }
 
@@ -60,7 +62,7 @@ export default function Signup() {
         setFocusedFields({current: target.name, previous: previousFields});
     }
 
-    const removeFromFocusedFields = ({target}) => {
+    const removeFromFocusedFields = () => {
         setFocusedFields({current: null, previous: [...focusedFields.previous]});
     }
 
@@ -157,7 +159,7 @@ export default function Signup() {
                             type="password" />
                     </div>
                     <div className="mb-[8px] w-full">
-                        <Button variant="$form" type="submit" disabled={!(email && fullName && username && password)}>Next</Button>
+                        <Button variant="form" type="submit" disabled={!(email && fullName && username && password)}>Next</Button>
                     </div>
                     {
                         (!showMessage && errorMessages.length > 0) &&

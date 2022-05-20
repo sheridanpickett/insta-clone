@@ -36,7 +36,7 @@ export default function PasswordReset() {
                         <FormInput variant="$secondary" value={value} onChange={e=>setValue(e.target.value)} placeholder="Email address or username"  name="email" />
 
                     </div>
-                    <Button variant="$form">Send login link</Button>
+                    <Button variant="form">Send login link</Button>
                     <div className="mt-[32px] mb-[16px] flex items-center w-full">
                         <div className="w-full bg-app-gray-300 h-[1px]" />
                         <div className="text-app-gray-500 text-[13px] mx-[18px] leading-[16px] font-semibold">OR</div>

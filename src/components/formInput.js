@@ -104,11 +104,11 @@ export default function FormInput({value, accepted, hasError, onChange, placehol
                     onChange={onChange}
                     onFocus={e=>{
                         setFocus(true);
-                        onFocus(e);
+                        onFocus && onFocus(e);
                     }}
                     onBlur={e=>{
                         setFocus(false);
-                        onBlur(e);
+                        onBlur && onBlur(e);
                     }}
                     {...props}
                 />

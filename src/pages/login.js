@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useAuth from '../context/useAuth';
 import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { SIGNUP, PASSWORD_RESET, DASHBOARD } from '../constants/routes';
 import FormInput from '../components/formInput';
@@ -9,16 +10,22 @@ import Logo from '../images/logo.png';
 
 export default function Login() {
 
+    const auth = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
 
-    const [login, setLogin] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        console.log(location);
-        navigate(location.state.from.pathname || DASHBOARD);
+        try {
+            const res = await auth.signin(email, password);
+            //navigate(location.state.from.pathname || DASHBOARD);
+        } catch(error) {
+            console.log(error);
+        }
+
     }
 
     return(
@@ -32,12 +39,12 @@ export default function Login() {
                         <img className="w-[175px] pb-9" src={Logo} alt="Instagram logo" />
                         <form className="flex flex-col w-full" onSubmit={handleSubmit}>
                             <div className="w-full mb-[6px]">
-                                <FormInput value={login} onChange={e=>setLogin(e.target.value)} placeholder="Email Address or Username" name="email"/>
+                                <FormInput value={email} onChange={e=>setEmail(e.target.value)} placeholder="Email Address" name="email"/>
                             </div>
                             <div className="w-full mb-[14px]">
                                 <FormInput value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" name="password" type="password"/>
                             </div>
-                            <Button variant="$form">Log in</Button>
+                            <Button variant="form">Log in</Button>
                         </form>
                         <Link to={PASSWORD_RESET}>
                             <p className="text-xs text-facebookblue mt-6">Forgotten your password?</p>

@@ -1,5 +1,6 @@
 import UploadPhoto from './uploadPhoto';
 import Logo from '../images/header-logo.png';
+import Logout from './logout';
 
 export default function Navigation() {
 
@@ -8,6 +9,7 @@ export default function Navigation() {
             <div className="h-9 flex items-end">
                 <img className="w-24" src={Logo} alt="instagram logo" />
             </div>
+            <Logout/>
             <UploadPhoto />
         </nav>
     )

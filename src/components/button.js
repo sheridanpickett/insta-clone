@@ -7,7 +7,7 @@ const ButtonContainer = styled.button`
     padding: 5px 9px;
     ${({variant}) => {
         switch(variant) {
-            case '$form':
+            case 'form':
                 return css`
                     width: 100%;
                     background-color: #53a1e5;
@@ -30,7 +30,7 @@ const Inner = styled.div`
     color: #262626;
     ${({variant}) => {
         switch(variant) {
-            case '$form':
+            case 'form':
                 return css`
                     color: white;
                 `
