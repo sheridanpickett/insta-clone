@@ -1,6 +1,7 @@
 import AuthContext from '../context/authContext';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const AuthProvider = ({children}) => {
 
@@ -9,9 +10,9 @@ const AuthProvider = ({children}) => {
     const auth = getAuth();
 
     useEffect(()=>{
-        const unsubscribe = auth.onAuthStateChanged(user=>{
-            if(user && !preventRedirect) {
-                setCurrentUser(user);
+        const unsubscribe = auth.onAuthStateChanged(auth=>{
+            if(auth && !preventRedirect) {
+                setCurrentUser(auth);
             } else {
                 setPreventRedirect(true);
             }
@@ -21,12 +22,16 @@ const AuthProvider = ({children}) => {
 
 
     const signup = async (email, password, username, fullName) => {
-        //create user, then add displayName, then create entry for user in "users" db and add fullName.
         try {
             const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
-            console.log('signing up');
-            setCurrentUser(userCredentials.currentUser)
-
+            await updateProfile(userCredentials.user, {
+                displayName: username
+            });
+            await axios.post(`${process.env.REACT_APP_BACKEND}/accounts/signup`, {
+                uid: userCredentials.user.uid,
+                fullName
+            });
+            setCurrentUser(userCredentials.user);
         } catch(error) {
             console.log(error);
         }
@@ -35,8 +40,6 @@ const AuthProvider = ({children}) => {
     const signin = async (email, password) => {
         try {
             const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-            console.log('signing in');
-            console.log(userCredentials);
             setCurrentUser(userCredentials.user)
         } catch(error) {
             console.log(error);
@@ -45,11 +48,10 @@ const AuthProvider = ({children}) => {
 
     const signout = async () => {
         await auth.signOut();
-        console.log('signing out');
         setCurrentUser(null);
     }
 
-    const value = {currentUser, signup, signin, signout}
+    const value = {currentUser, signup, signin, signout }
 
     return (
         <AuthContext.Provider value={value}>

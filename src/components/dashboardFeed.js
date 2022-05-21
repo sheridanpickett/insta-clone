@@ -9,7 +9,7 @@ const DashboardPostFeed = () => {
 
     useEffect(()=>{
         const getAllImageKeys = async () => {
-            let imageKeys = (await axios.get(`${process.env.REACT_APP_API_SERVER_URL}/images/allImageKeys`)).data;
+            let imageKeys = (await axios.get(`${process.env.REACT_APP_BACKEND}/images/allImageKeys`)).data;
             setImageKeys(imageKeys);
         }
         getAllImageKeys();

@@ -12,7 +12,7 @@ const UploadPhoto = () => {
         formData.append('imageFile', e.target.files[0]);
         try {
             const res = await axios.post(
-                `${process.env.REACT_APP_API_SERVER_URL}/images`,
+                `${process.env.REACT_APP_BACKEND}/images`,
                 formData,
                 { headers: {'content-type': 'multipart/form-data'}}
             )
@@ -32,7 +32,7 @@ const UploadPhoto = () => {
         formData.append('imageFile', imageFile);
         try {
             const res = await axios.post(
-                `${process.env.REACT_APP_API_SERVER_URL}/images`,
+                `${process.env.REACT_APP_BACKEND}/images`,
                 formData,
                 { headers: {'content-type': 'multipart/form-data'}}
             )

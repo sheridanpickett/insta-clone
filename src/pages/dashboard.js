@@ -1,5 +1,5 @@
 import Navigation from '../components/navigation';
-import DashboardPostFeed from '../components/dashboardPostFeed';
+import DashboardFeed from '../components/dashboardFeed';
 import useAuth from '../context/useAuth';
 
 export default function Dashboard() {
@@ -8,7 +8,7 @@ export default function Dashboard() {
         <>
             <Navigation />
             <div className="flex justify-center">
-                <DashboardPostFeed />
+                <DashboardFeed />
             </div>
         </>
     )

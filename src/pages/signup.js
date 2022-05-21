@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../context/useAuth';
-import { Link, useNavigate } from 'react-router-dom';
-import { LOGIN, DASHBOARD } from '../constants/routes';
+import { Link } from 'react-router-dom';
+import { LOGIN } from '../constants/routes';
 import FormInput from '../components/formInput';
 import Button from '../components/button';
 import Logo from '../images/logo.png';
@@ -10,48 +10,44 @@ import Logo from '../images/logo.png';
 export default function Signup() {
 
     const auth = useAuth();
-    const navigate = useNavigate();
     const [focusedFields, setFocusedFields] = useState({
         current: null,
         previous: []
     })
     const [showMessage, setShowMessage] = useState(true);
     const [errorMessages, setErrorMessages] = useState([]);
-    const [signupResult, setSignupResult] = useState({
-        email: {
-            hasError: false,
-            message: "",
-            accepted: false
-        },
-        fullName: {
-            hasError: false,
-            message: "",
-            accepted: false
-        },
-        username: {
-            hasError: false,
-            message: "",
-            accepted: false
-        },
-        password: {
-            hasError: false,
-            message: "",
-            accepted: false
-        }
+    const [signupDetails, setSignupDetails] = useState({
+        email: {hasError: false,accepted: false},
+        fullName: {hasError: false,accepted: false},
+        username: { hasError: false, accepted: false},
+        password: { hasError: false, accepted: false}
     })
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const setResults = (res) => {
+        const messages = res.data.errorMessages;
+        setErrorMessages(messages);
+        let details = res.data.details;
+        for(const field in details) {
+            if(!field.error && focusedFields.previous.includes(field)) {
+                details[field].accepted = true;
+            }
+        }
+        setSignupDetails(details);
+    }
+
+    const validate = async () => {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND}/accounts/validate_signup`,{email,fullName,username,password});
+        setResults(res);
+    }
 
     const handleSubmit = async e => {
         e.preventDefault();
         setShowMessage(false);
-        const res = await getSignUpResults(false);
-        if(true) {
-            await auth.signup(email, password);
-        }
+        const res = await await auth.signup(email, password, username, fullName);
     }
 
     const addToFocusedFields = ({target}) => {
@@ -66,40 +62,11 @@ export default function Signup() {
         setFocusedFields({current: null, previous: [...focusedFields.previous]});
     }
 
-    const getSignUpResults = async (wasDryRun) => {
-        const res = await axios.post(`${process.env.REACT_APP_API_SERVER_URL}/accounts/create_user`,{wasDryRun,email,fullName,username,password}, {withCredentials: true});
-        const errorFields = res.data.errors.map(field=>field.label);
-        const setFieldValues = fieldName => {
-            let field = {};
-            if(!(focusedFields.previous.includes(fieldName))) {
-                field.hasError = false;
-                field.accepted = false;
-            } else {
-                if(errorFields.includes(fieldName)) {
-                    field.hasError = true;
-                    field.accepted = false;
-                } else {
-                    field.hasError = false;
-                    field.accepted = true;
-                }
-            }
-            return field;
-        }
-        let newSignupResult = {
-            email: setFieldValues('email'),
-            fullName: setFieldValues('fullName'),
-            username: setFieldValues('username'),
-            password: setFieldValues('password')
-        };
-        setSignupResult(newSignupResult);
-        const messages = res.data.errors.map(field=>field.message);
-        setErrorMessages(messages);
-    }
 
     useEffect(() => {
         const TimeoutId = setTimeout(async () => {
             if(email || fullName || username || password) {
-                getSignUpResults(true);
+                validate(true);
             }
         }, 1000)
         return () => clearTimeout(TimeoutId)
@@ -115,10 +82,10 @@ export default function Signup() {
                     <div className="w-full mb-[6px]">
                         <FormInput
                             value={email} 
-                            accepted={signupResult.email.accepted} 
-                            hasError={signupResult.email.hasError} 
+                            accepted={signupDetails.email.accepted} 
+                            hasError={signupDetails.email.hasError} 
                             onFocus={addToFocusedFields}
-                            onBlur={e=>{removeFromFocusedFields(e); getSignUpResults(true)}} 
+                            onBlur={e=>{removeFromFocusedFields(e); validate(true)}} 
                             onChange={e=>setEmail(e.target.value)} 
                             placeholder="Email Address" 
                             name="email" 
@@ -127,10 +94,10 @@ export default function Signup() {
                     <div className="w-full mb-[6px]">
                         <FormInput
                             value={fullName} 
-                            accepted={signupResult.fullName.accepted} 
-                            hasError={signupResult.fullName.hasError} 
+                            accepted={signupDetails.fullName.accepted} 
+                            hasError={signupDetails.fullName.hasError} 
                             onFocus={addToFocusedFields}
-                            onBlur={e=>{removeFromFocusedFields(e); getSignUpResults(true)}} 
+                            onBlur={e=>{removeFromFocusedFields(e); validate(true)}} 
                             onChange={e=>setFullName(e.target.value)} 
                             placeholder="Full Name"
                             name="fullName" />
@@ -138,10 +105,10 @@ export default function Signup() {
                     <div className="w-full mb-[6px]">
                         <FormInput
                             value={username} 
-                            accepted={signupResult.username.accepted} 
-                            hasError={signupResult.username.hasError} 
+                            accepted={signupDetails.username.accepted} 
+                            hasError={signupDetails.username.hasError} 
                             onFocus={addToFocusedFields} 
-                            onBlur={e=>{removeFromFocusedFields(e); getSignUpResults(true)}} 
+                            onBlur={e=>{removeFromFocusedFields(e); validate(true)}} 
                             onChange={e=>setUsername(e.target.value)} 
                             placeholder="Username"
                             name="username" />
@@ -149,10 +116,10 @@ export default function Signup() {
                     <div className="w-full mb-[14px]">
                         <FormInput
                             value={password} 
-                            accepted={signupResult.password.accepted} 
-                            hasError={signupResult.password.hasError} 
+                            accepted={signupDetails.password.accepted} 
+                            hasError={signupDetails.password.hasError} 
                             onFocus={addToFocusedFields} 
-                            onBlur={e=>{removeFromFocusedFields(e); getSignUpResults(true)}} 
+                            onBlur={e=>{removeFromFocusedFields(e); validate(true)}} 
                             onChange={e=>setPassword(e.target.value)} 
                             placeholder="Password"
                             name="password" 
@@ -179,10 +146,6 @@ export default function Signup() {
                     Have an account?&nbsp; <Link to={LOGIN}><span className="text-cornflowerblue font-semibold">Log in</span></Link>
                 </p>
             </div>
-            <button onClick={async () => {
-                const res = await axios.get(`${process.env.REACT_APP_API_SERVER_URL}/accounts/welcome`, {withCredentials: true});
-                console.log(res);
-            }}>Check</button>
         </div>
     )
 }
