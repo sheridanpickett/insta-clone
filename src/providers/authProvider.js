@@ -23,15 +23,15 @@ const AuthProvider = ({children}) => {
 
     const signup = async (email, password, username, fullName) => {
         try {
-            const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(userCredentials.user, {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(userCredential.user, {
                 displayName: username
             });
             await axios.post(`${process.env.REACT_APP_BACKEND}/accounts/signup`, {
-                uid: userCredentials.user.uid,
+                uid: userCredential.user.uid,
                 fullName
             });
-            setCurrentUser(userCredentials.user);
+            setCurrentUser(userCredential.user);
         } catch(error) {
             console.log(error);
         }
@@ -39,9 +39,14 @@ const AuthProvider = ({children}) => {
 
     const signin = async (email, password) => {
         try {
-            const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-            setCurrentUser(userCredentials.user)
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userData = await axios.get(`${process.env.REACT_APP_BACKEND}/accounts/user_data?uid=${userCredential.user.uid}`)
+            setCurrentUser({
+                userCredential: userCredential.user,
+                userData
+            })
         } catch(error) {
+            auth.signout();
             console.log(error);
         }
     }
