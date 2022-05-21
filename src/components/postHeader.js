@@ -23,7 +23,7 @@ const PostHeader = ({owner}) => {
         <Header>
             <ProfilePicture variant="nav" />
             <OwnerName>
-                {owner.displayName}
+                {owner.username}
             </OwnerName>
         </Header>
     )

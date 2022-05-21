@@ -24,14 +24,15 @@ const AuthProvider = ({children}) => {
     const signup = async (email, password, username, fullName) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(userCredential.user, {
-                displayName: username
-            });
-            await axios.post(`${process.env.REACT_APP_BACKEND}/accounts/signup`, {
+            const userData = (await axios.post(`${process.env.REACT_APP_BACKEND}/accounts/signup`, {
                 uid: userCredential.user.uid,
-                fullName
+                fullName,
+                username
+            })).data;
+            setCurrentUser({
+                userCredential: userCredential.user,
+                userData
             });
-            setCurrentUser(userCredential.user);
         } catch(error) {
             console.log(error);
         }

@@ -11,7 +11,7 @@ const Container = styled.article`
 `
 
 const owner = {
-    displayName: "jessicambartlett"
+    username: "jessicambartlett"
 }
 
 const Post = ({aspectRatio, imageKey}) => {
