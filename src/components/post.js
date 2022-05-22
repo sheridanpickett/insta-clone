@@ -10,15 +10,12 @@ const Container = styled.article`
     background: #ffffff;
 `
 
-const owner = {
-    username: "jessicambartlett"
-}
-
-const Post = ({aspectRatio, imageKey}) => {
+const Post = ({aspectRatio, post}) => {
+    const { date_created, file_key, ...owner } = post;
     return (
         <Container>
             <PostHeader owner={owner} />
-            <PostContent aspectRatio={aspectRatio} imageKey={imageKey}/>
+            <PostContent aspectRatio={aspectRatio} imageKey={file_key}/>
         </Container>
     )
 }

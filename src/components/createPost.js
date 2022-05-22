@@ -1,21 +1,20 @@
 import { useState, useRef } from 'react';
-import axios from 'axios';
+import { createPost } from '../data/posts';
+import useAuth from '../context/useAuth';
 
 const UploadPhoto = () => {
 
     const [imageFile, setImageFile] = useState(null);
     const inputRef = useRef(null);
+    const auth = useAuth();
 
     const handleFileSelect = async e => {
         setImageFile(e.target.files[0]);
         const formData = new FormData();
         formData.append('imageFile', e.target.files[0]);
+        formData.append('uid', auth.currentUser.uid);
         try {
-            const res = await axios.post(
-                `${process.env.REACT_APP_BACKEND}/images`,
-                formData,
-                { headers: {'content-type': 'multipart/form-data'}}
-            )
+            const res = await createPost(formData);
             console.log(res);
         } catch(err) {
             console.log(err);
@@ -26,21 +25,21 @@ const UploadPhoto = () => {
         inputRef.current.click();
     }
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('imageFile', imageFile);
-        try {
-            const res = await axios.post(
-                `${process.env.REACT_APP_BACKEND}/images`,
-                formData,
-                { headers: {'content-type': 'multipart/form-data'}}
-            )
-            console.log(res);
-        } catch(err) {
-            console.log(err);
-        }
-    }
+    // const handleSubmit = async e => {
+    //     e.preventDefault();
+    //     const formData = new FormData();
+    //     formData.append('imageFile', imageFile);
+    //     try {
+    //         const res = await axios.post(
+    //             `${process.env.REACT_APP_BACKEND}/images`,
+    //             formData,
+    //             { headers: {'content-type': 'multipart/form-data'}}
+    //         )
+    //         console.log(res);
+    //     } catch(err) {
+    //         console.log(err);
+    //     }
+    // }
 
     return (
         <button onClick={handleClick}>

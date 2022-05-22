@@ -1,24 +1,23 @@
 import { useState, useEffect } from 'react';
 import Post from "./post";
-import axios from 'axios';
 import { nanoid } from 'nanoid';
+import { getAllPosts } from '../data/posts';
 
 const DashboardPostFeed = () => {
     
-    const [imageKeys, setImageKeys] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     useEffect(()=>{
-        const getAllImageKeys = async () => {
-            let imageKeys = (await axios.get(`${process.env.REACT_APP_BACKEND}/images/allImageKeys`)).data;
-            setImageKeys(imageKeys);
-        }
-        getAllImageKeys();
+        (async () => {
+            const posts = await getAllPosts();
+            setPosts(posts);
+        })()
     }, [])
 
     return (
         <div className="flex flex-col items-center flex-[0_1_470px]">
-            {imageKeys.map((imageKey)=>(
-                <Post key={nanoid()} imageKey={imageKey} aspectRatio="standard"/>
+            {posts.map((post)=>(
+                <Post key={nanoid()} post={post} aspectRatio="standard"/>
             ))}
         </div>
     )

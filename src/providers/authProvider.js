@@ -1,7 +1,7 @@
 import AuthContext from '../context/authContext';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { getAuth, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const AuthProvider = ({children}) => {
 

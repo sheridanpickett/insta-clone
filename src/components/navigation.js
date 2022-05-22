@@ -1,4 +1,4 @@
-import UploadPhoto from './uploadPhoto';
+import UploadPhoto from './createPost';
 import Logo from '../images/header-logo.png';
 import Logout from './logout';
 import ProfilePicture from './profilePicture';
