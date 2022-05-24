@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ProfilePicture from './profilePicture';
+import Avatar from './avatar';
 
 const Header = styled.header`
     height: 58px;
@@ -21,7 +21,7 @@ const OwnerName = styled.div`
 const PostHeader = ({owner}) => {
     return (
         <Header>
-            <ProfilePicture variant="nav" />
+            <Avatar variant="nav" />
             <OwnerName>
                 {owner.username}
             </OwnerName>

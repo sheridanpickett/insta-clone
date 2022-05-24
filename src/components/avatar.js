@@ -25,11 +25,11 @@ const Container = styled.div`
     }}
 `
 
-const ProfilePicture = ({...props}) => {
+const Avatar = ({...props}) => {
     return (
         <Container {...props}>
         </Container>
     )
 }
 
-export default ProfilePicture;
+export default Avatar;
