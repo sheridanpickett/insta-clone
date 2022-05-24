@@ -7,11 +7,13 @@ import Separator from './separator';
 import {ReactComponent as ProfileIcon} from '../images/profile.svg';
 import {ReactComponent as SettingsIcon} from '../images/settings.svg';
 import useAuth from '../context/useAuth';
+import { Link } from 'react-router-dom';
+import { PROFILE, SETTINGS } from '../constants/routes.js';
 
 const MenuContainer = styled.div`
     position: absolute;
     top: 15px;
-    right: -50px;
+    right: -40px;
     padding: 0px;
     background-color: #ffffff;
     border-radius: 6px;
@@ -45,13 +47,11 @@ const MenuItem = styled.li`
     background-color: #ffffff;
     width: 230px;
     height: 37px;
-    padding: 8px 16px;
     :hover {
         background-color: #fafafa;
     }
 `
 const ClickArea = styled.div`
-    display: inline-block;
     position: relative;
 `
 const ChildContainer = styled.button`
@@ -63,6 +63,16 @@ const Label = styled.div`
 `
 const Icon = styled.div`
     margin-right: 12px;
+`
+const StyledLink = styled(Link)`
+    display: flex;
+    width: 100%;
+    padding: 8px 16px;
+`
+const LogoutItem = styled.div`
+    padding: 8px 16px;
+    display: flex;
+    width: 100%;
 `
 
 const ProfileMenu = ({children}) => {
@@ -93,22 +103,28 @@ const ProfileMenu = ({children}) => {
                 <MenuUnstyled anchorEl={anchorEl} components={{Listbox: MenuContainer}} open={isOpen}>
                     <Menu>
                         <MenuItemUnstyled component={MenuItem}>
-                            <Icon>
-                                <ProfileIcon/>
-                            </Icon>
-                            <Label>Profile</Label>
+                            <StyledLink to={PROFILE}>
+                                <Icon>
+                                    <ProfileIcon/>
+                                </Icon>
+                                <Label>Profile</Label>
+                            </StyledLink>
                         </MenuItemUnstyled>
                         <MenuItemUnstyled component={MenuItem}>
-                            <Icon>
-                                <SettingsIcon/>
-                            </Icon>
-                            <Label>Settings</Label>
+                            <StyledLink to={SETTINGS}>
+                                <Icon>
+                                    <SettingsIcon/>
+                                </Icon>
+                                <Label>Settings</Label>
+                            </StyledLink>
                         </MenuItemUnstyled>
                         <Separator/>
                         <MenuItemUnstyled component={MenuItem} onClick={auth.signout}>
-                            <Label>
-                                Log Out
-                            </Label>
+                            <LogoutItem>
+                                <Label>
+                                    Log Out
+                                </Label>
+                            </LogoutItem>
                         </MenuItemUnstyled>
                     </Menu>
                 </MenuUnstyled>

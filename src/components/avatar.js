@@ -27,8 +27,7 @@ const Container = styled.div`
 
 const Avatar = ({...props}) => {
     return (
-        <Container {...props}>
-        </Container>
+        <Container {...props}/>
     )
 }
 
