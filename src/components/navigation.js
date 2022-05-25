@@ -10,7 +10,7 @@ import { ReactComponent as HeartIcon } from '../images/heart.svg';
 import { ReactComponent as MessageIcon } from '../images/messages.svg';
 import { ReactComponent as ExploreIcon } from '../images/explore.svg';
 
-const IconContainer = styled.div`
+const IconContainer = styled.button`
     margin-left: 22px;
 `
 
@@ -25,7 +25,9 @@ export default function Navigation() {
                 </div>
                 <div className="flex items-center stretch relative">
                     <IconContainer>
-                        <HomeIcon />
+                        <Link to={DASHBOARD}>
+                            <HomeIcon />
+                        </Link>
                     </IconContainer>
                     <IconContainer>
                         <MessageIcon />
