@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import PostContent from "./postContent";
 import PostHeader from './postHeader';
+import PostIconBar from './postIconBar';
+import PostCommentSection from './postCommentSection';
 
 const Container = styled.article`
     width: 100%;
@@ -16,6 +18,8 @@ const Post = ({aspectRatio, post}) => {
         <Container>
             <PostHeader owner={owner} />
             <PostContent aspectRatio={aspectRatio} imageKey={file_key}/>
+            <PostIconBar/>
+            <PostCommentSection likeCount={0} />
         </Container>
     )
 }

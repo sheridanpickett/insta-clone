@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import UploadPhoto from './createPost';
+import CreatePost from './createPost';
 import Logo from '../images/header-logo.png';
 import Avatar from './avatar';
 import ProfileMenu from './profileMenu';
@@ -9,6 +9,7 @@ import { ReactComponent as HomeIcon } from '../images/home.svg';
 import { ReactComponent as HeartIcon } from '../images/heart.svg';
 import { ReactComponent as MessageIcon } from '../images/messages.svg';
 import { ReactComponent as ExploreIcon } from '../images/explore.svg';
+import { ReactComponent as AddIcon } from '../images/add.svg'
 
 const IconContainer = styled.button`
     margin-left: 22px;
@@ -33,7 +34,9 @@ export default function Navigation() {
                         <MessageIcon />
                     </IconContainer>
                     <IconContainer>
-                        <UploadPhoto />
+                        <CreatePost>
+                            <AddIcon />
+                        </CreatePost>
                     </IconContainer>
                     <IconContainer>
                         <ExploreIcon />

@@ -54,7 +54,7 @@ const MenuItem = styled.li`
 const ClickArea = styled.div`
     position: relative;
 `
-const ChildContainer = styled.button`
+const ChildContainer = styled.div`
     display: block;
 `
 const Label = styled.div`
