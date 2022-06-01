@@ -8,6 +8,7 @@ import Signup from './pages/signup';
 import Login from './pages/login';
 import PasswordReset from './pages/passwordReset';
 import Profile from './pages/profile';
+import PostPage from './pages/postPage';
 import firebaseApp from './services/firebase';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                         <PasswordReset />
                     </PublicRoute>
                 } />
+                <Route path={ROUTES.POST} element={<PostPage />} />
                 <Route path={ROUTES.PROFILE} element={<Profile />} />
                 <Route path={ROUTES.DASHBOARD} element={
                     <PrivateRoute>

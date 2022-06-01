@@ -3,11 +3,9 @@ import {ReactComponent as SmileyIcon} from '../images/smiley.svg';
 import AutoExpandTextArea from './autoExpandTextArea';
 
 const Root = styled.section`
-   @media(max-width: 735px) {
-        display: none;
-    }
     padding: 4px 12px;
     border-top: 1px solid #efefef;
+    width: 100%;
 `
 
 const Form = styled.form`
@@ -29,15 +27,18 @@ const Button = styled.button`
     margin-left: 1px;
 `
 
-const PostCommentInput = ({value, setValue}) => {
+const PostCommentInput = ({value, setValue, onSubmit}) => {
     return (
         <Root>
-            <Form>
+            <Form onSubmit={e=>{
+                e.preventDefault();
+                onSubmit();
+            }}>
                 <IconContainer>
                     <SmileyIcon/>
                 </IconContainer>
                 <AutoExpandTextArea value={value} setValue={setValue} placeholder="Add a comment..."></AutoExpandTextArea>
-                <Button>Post</Button>
+                <Button type="submit">Post</Button>
             </Form>
         </Root>
     )

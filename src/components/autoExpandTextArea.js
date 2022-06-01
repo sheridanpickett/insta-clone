@@ -46,4 +46,4 @@ const AutoExpandTextArea = ({value, setValue, ...props}) => {
     )
 }
 
-export default AutoExpandTextArea;
+export default AutoExpandTextArea

@@ -4,3 +4,4 @@ export const LOGIN = '/login';
 export const PASSWORD_RESET = '/password_reset';
 export const PROFILE = '/profile/:username';
 export const SETTINGS = '/settings';
+export const POST = '/p/:postId';

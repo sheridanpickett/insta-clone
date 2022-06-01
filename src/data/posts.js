@@ -8,3 +8,7 @@ export const createPost = async (file) => {
 export const getAllPosts = async () => {
     return (await axios.get(`${process.env.REACT_APP_BACKEND}/posts/all_posts`)).data;
 }
+
+export const getPost = async (postId) => {
+    return (await axios.get(`${process.env.REACT_APP_BACKEND}/posts/p/${postId}`)).data;
+}

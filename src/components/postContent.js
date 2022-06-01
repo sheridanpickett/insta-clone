@@ -28,7 +28,7 @@ const Image = styled.img`
 const PostContent = ({aspectRatio, imageKey}) => {
     return (
         <Content aspectRatio={aspectRatio}>
-            <Image src={`${process.env.REACT_APP_BACKEND}/posts/${imageKey}`} alt="" />
+            <Image src={`${process.env.REACT_APP_BACKEND}/images/${imageKey}`} alt="" />
         </Content>
     )
 }
