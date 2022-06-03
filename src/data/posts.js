@@ -5,10 +5,15 @@ export const createPost = async (file) => {
     return res;
 }
 
-export const getAllPosts = async () => {
-    return (await axios.get(`${process.env.REACT_APP_BACKEND}/posts/all_posts`)).data;
+export const getAllPosts = async (viewerUid) => {
+    return (await axios.post(`${process.env.REACT_APP_BACKEND}/posts/all_posts`, {
+        viewerUid
+    })).data;
 }
 
-export const getPost = async (postId) => {
-    return (await axios.get(`${process.env.REACT_APP_BACKEND}/posts/p/${postId}`)).data;
+export const getPost = async (postId, viewerUid) => {
+    return (await axios.post(`${process.env.REACT_APP_BACKEND}/posts/get_post`, {
+        postId,
+        viewerUid
+    })).data;
 }

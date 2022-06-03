@@ -15,7 +15,6 @@ const CreatePost = ({children}) => {
         formData.append('uid', auth.currentUser.uid);
         try {
             const res = await createPost(formData);
-            console.log(res);
         } catch(err) {
             console.log(err);
         }

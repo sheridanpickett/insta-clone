@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Post from "./post";
 import { nanoid } from 'nanoid';
 import { getAllPosts } from '../data/posts';
+import useAuth from '../context/useAuth';
 
 const Container = styled.div`
     display: flex;
@@ -17,13 +18,16 @@ const Posts = styled.div`
 const DashboardPostFeed = () => {
     
     const [posts, setPosts] = useState([]);
+    const auth = useAuth();
 
     useEffect(()=>{
         (async () => {
-            const posts = await getAllPosts();
-            setPosts(posts);
+            if(auth && auth.currentUser) {
+                const posts = await getAllPosts(auth.currentUser.uid);
+                setPosts(posts);
+            }
         })()
-    }, [])
+    }, [auth])
 
     return (
         <Container>

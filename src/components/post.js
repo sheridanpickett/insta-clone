@@ -5,10 +5,10 @@ import PostHeader from './postHeader';
 import PostIconBar from './postIconBar';
 import PostCommentInput from './postCommentInput';
 import useAuth from '../context/useAuth';
-import { addComment } from '../data/comments';
 import CommentsFeed from './commentsFeed';
 import CommentPreview from './commentPreview';
-import { getAllComments } from '../data/comments';
+import { addComment, getAllComments, getCommentCount } from '../data/comments';
+import { getLikeCount } from '../data/likes';
 
 const Container = styled.article`
     width: 100%;
@@ -93,43 +93,45 @@ const Sidebar = styled.section`
 `
 
 const Post = ({aspectRatio, post, isVertical, showComments}) => {
-    const { id, date_created, file_key, ...owner } = post;
-    console.log(file_key)
+    const { post_id, date_created, file_key, ...owner } = post;
     const auth = useAuth();
+    const [commentCount, setCommentCount] = useState(0);
+    const [likeCount, setLikeCount] = useState(0);
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
 
     useEffect(()=>{
         (async ()=> {
-            const comments = (await getAllComments(id)).data;
-            console.log(comments)
+            const comments = (await getAllComments(post_id)).data;
+            const likeCountData = await getLikeCount(post_id);
             setComments(comments)
+            setLikeCount(likeCountData);
+            console.log(likeCountData);
         })();
     }, [])
 
     const handleSubmit = async () => {
-        const res = await addComment(auth.currentUser.uid, id, comment, null);
+        const res = await addComment(auth.currentUser.uid, post_id, comment, null);
         setComment("");
-        console.log(res);
     }
 
     if(isVertical) {
         return (
             <Container isVertical={isVertical}>
                 <PostHeader owner={owner} />
-                <Content>
+                <Content aspectRatio={aspectRatio}>
                     <ContentInner>
                         <PostContent aspectRatio={aspectRatio} imageKey={file_key}/>
                     </ContentInner>
                 </Content>
-                <PostIconBar/>
-                <LikeCount>200 likes</LikeCount>
-                <DateCreated datetime={date_created}>
-                    <time>MAY 16</time>
-                </DateCreated>
+                <PostIconBar postId={post_id}/>
+                <LikeCount>{likeCount} likes</LikeCount>
                 {
                     !!showComments && <CommentPreview comments={comments} />
                 }
+                <DateCreated datetime={date_created}>
+                    <time>MAY 16</time>
+                </DateCreated>
                 <PostCommentInput value={comment} setValue={setComment} onSubmit={handleSubmit}/>
             </Container>
         )
@@ -143,9 +145,9 @@ const Post = ({aspectRatio, post, isVertical, showComments}) => {
                 </Content>
                 <Sidebar>
                     <PostHeader owner={owner} />
-                    <CommentsFeed postId={id} comments={comments}/>
-                    <PostIconBar />
-                    <LikeCount>200 likes</LikeCount>
+                    <CommentsFeed postId={post_id} comments={comments}/>
+                    <PostIconBar postId={post_id} />
+                    <LikeCount>{likeCount}</LikeCount>
                     <DateCreated datetime={date_created}>
                         <time>MAY 16</time>
                     </DateCreated>

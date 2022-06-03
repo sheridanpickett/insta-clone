@@ -4,6 +4,7 @@ import Navigation from "../components/navigation"
 import Post from "../components/post"
 import { getPost } from '../data/posts';
 import { useParams } from 'react-router-dom';
+import useAuth from '../context/useAuth';
 
 const Page = styled.div`
     display: flex;
@@ -18,14 +19,17 @@ const Container = styled.div`
 const PostPage = () => {
     const [post, setPost] = useState(null);
     const { postId } = useParams();
-    console.log(postId);
+    const auth = useAuth()
 
     useEffect(()=>{
         (async ()=>{
-            const res = await getPost(postId);
-            setPost(res);
+            if(auth && auth.currentUser) {
+                const res = await getPost(postId, auth.currentUser.uid);
+                console.log(res)
+                setPost(res);
+            }
         })()
-    }, []);
+    }, [auth]);
 
     return (
         <>

@@ -9,3 +9,8 @@ export const getAllComments = async (postId) => {
     const res = await axios.get(`${process.env.REACT_APP_BACKEND}/comments/get_all/${postId}`);
     return res;
 }
+
+export const getCommentCount = async (postId) => {
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND}/comments/get_count/${postId}`);
+    return res;
+}

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 const Content = styled.div`
     width: auto;
     position: relative;

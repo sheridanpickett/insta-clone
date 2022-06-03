@@ -7,7 +7,7 @@ import Comment from './comment';
 const Comments = styled.section`
     padding: 0 12px;
     margin-bottom: 4px;
-    overflow: auto;
+    overflow: scroll;
     flex: 1 1 auto;
     max-width: inherit;
 `
