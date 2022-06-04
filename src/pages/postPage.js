@@ -23,7 +23,7 @@ const PostPage = () => {
 
     useEffect(()=>{
         (async ()=>{
-            if(auth && auth.currentUser) {
+            if(auth && auth.currentUser && auth.currentUser.uid) {
                 const res = await getPost(postId, auth.currentUser.uid);
                 console.log(res)
                 setPost(res);

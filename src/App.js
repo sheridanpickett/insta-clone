@@ -31,8 +31,8 @@ function App() {
                         <PasswordReset />
                     </PublicRoute>
                 } />
-                <Route path={ROUTES.POST} element={<PostPage />} />
-                <Route path={ROUTES.PROFILE} element={<Profile />} />
+                <Route path={`${ROUTES.POST}/:postId`} element={<PostPage />} />
+                <Route path={`${ROUTES.PROFILE}/:uid`} element={<Profile />} />
                 <Route path={ROUTES.DASHBOARD} element={
                     <PrivateRoute>
                         <Dashboard />

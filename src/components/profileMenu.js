@@ -73,6 +73,7 @@ const LogoutItem = styled.div`
     padding: 8px 16px;
     display: flex;
     width: 100%;
+    cursor: pointer;
 `
 
 const ProfileMenu = ({children}) => {
@@ -103,7 +104,7 @@ const ProfileMenu = ({children}) => {
                 <MenuUnstyled anchorEl={anchorEl} components={{Listbox: MenuContainer}} open={isOpen}>
                     <Menu>
                         <MenuItemUnstyled component={MenuItem}>
-                            <StyledLink to={PROFILE}>
+                            <StyledLink to={`${PROFILE}/${auth.currentUser.uid}`}>
                                 <Icon>
                                     <ProfileIcon/>
                                 </Icon>
